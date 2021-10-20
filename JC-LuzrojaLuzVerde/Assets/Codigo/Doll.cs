@@ -5,6 +5,7 @@ using UnityEngine;
 using TMPro;
 using System;
 
+
 public class Doll : MonoBehaviour
 {
    
@@ -17,15 +18,26 @@ public class Doll : MonoBehaviour
     public AudioSource instrucciones2;
     public AudioSource[] luz;
     public AudioSource[] doll;
+    float timerCabeza;
+
+    private bool cantando = false;
+    private System.Random scanplayer;
+
+    private bool volteada = false;
+
+
+
     private bool start = true;
     // Start is called before the first frame update
     void Start()
     {
-        
+        var seed = Environment.TickCount;
+        scanplayer = new System.Random(seed);
         inicio = FindObjectOfType<Reloj>();
-        instrucciones1.Play(1);
-        rotation_Doll(cuerpo, 180);
-        rotation_Doll(cabeza, 180);
+        instrucciones1.Play();
+        instrucciones2.PlayDelayed(10);
+        doll[1].PlayDelayed(10);
+        
 
     }
 
@@ -33,15 +45,16 @@ public class Doll : MonoBehaviour
     void Update()
     {
         inicio_Audio();
+        if (!start) 
+        {
+            muneca_Voltea();
 
-        //if (inicio.Seg >= 30) 
-        //{
-        //   rotation_Doll(cabeza,180);
-        //}
-        //if (inicio.Seg <= 30)
-        //{
-        //    rotation_Doll(cabeza,0);
-        //}
+
+
+        }
+        
+
+
     }
 
     public void inicio_Audio() 
@@ -49,21 +62,16 @@ public class Doll : MonoBehaviour
         //booleano para iniciar solo una ves las instrucciones
         if (start) {
 
-            if (instrucciones1.isPlaying)
-            {
-                instrucciones2.PlayDelayed(1);
-                
-                doll[1].PlayDelayed(1);
-                
-            }
+           
 
             if (!instrucciones2.isPlaying && !instrucciones1.isPlaying)
             {
+                
                 inicio.start = true;
                 start = false;
 
             }
-            if (instrucciones2.isPlaying)
+            if (instrucciones1.isPlaying)
             {
                 rotation_Doll(cuerpo, 180);
                 rotation_Doll(cabeza, 180);
@@ -75,7 +83,54 @@ public class Doll : MonoBehaviour
             }
         }
     }
-    public void rotation_Doll(Transform obj,int grados) 
+    public void muneca_Voltea() 
+    {
+        if (!cantando)
+        {
+            luz[inicio.Minutos].Play();
+            cantando = true; 
+        }
+        else if (cantando)
+        {
+            if (inicio.Minutos == 4)
+            {
+
+                if (!luz[inicio.Minutos].isPlaying)
+                {
+                    if (!volteada)
+                    {
+                        doll[0].Play();
+                        volteada = true;
+                    }
+                }
+            }
+            if (inicio.Minutos == 3)
+            {
+
+                if (!luz[inicio.Minutos].isPlaying)
+                {
+                    if (!volteada)
+                    {
+                        doll[0].Play();
+                        volteada = true;
+                    }
+                   
+                }
+            }
+
+            if (volteada)
+            {
+                rotation_Doll(cabeza, 180);
+            }
+            else
+            {
+                rotation_Doll(cabeza, 0);
+            }
+
+        }
+        
+    }
+    public void rotation_Doll(Transform obj, int grados) 
     {
        // transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(new Vector3(transform.rotation.eulerAngles.x, grados, transform.rotation.eulerAngles.z)), Time.deltaTime * 3);
        obj.rotation = Quaternion.Slerp(obj.rotation, Quaternion.Euler(new Vector3(obj.rotation.eulerAngles.x, grados, obj.rotation.eulerAngles.z)), Time.deltaTime * 3);
