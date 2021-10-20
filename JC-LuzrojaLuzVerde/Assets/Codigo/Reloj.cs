@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.TestTools;
+using TMPro;
 
 public class Reloj : MonoBehaviour
 {
@@ -9,17 +10,17 @@ public class Reloj : MonoBehaviour
     public int tiempoInicial;
     [Tooltip("Escala del tiempo del reloj")]
     public float escalaDeTiempo = 1;
-    public TextMesh TextCont;
+    public TextMeshPro TextCont;
 
     // Start is called before the first frame update
     void Start()
     {
-        TextCont = GetComponent<TextMesh>();
+        TextCont = GetComponent<TextMeshPro>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        TextCont.text = "hola";
     }
 }
