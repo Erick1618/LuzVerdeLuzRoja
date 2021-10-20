@@ -198,7 +198,7 @@ public class Doll : MonoBehaviour
     {
        timerinicial += Time.deltaTime*1;
         tiempo = (int)timerinicial % 60;
-        print(tiempo);
+        //print(tiempo);
 
         if (tiempo==valor) 
         {

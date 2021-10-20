@@ -54,9 +54,9 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Assets\Codigo\Reloj.cs" />
+    <Compile Include="Assets\Codigo\LogicaPersonaje1.cs" />
     <Compile Include="Assets\Codigo\Audio.cs" />
     <Compile Include="Assets\Codigo\Doll.cs" />
-    <Compile Include="Assets\Codigo\LogicaPersonaje1.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

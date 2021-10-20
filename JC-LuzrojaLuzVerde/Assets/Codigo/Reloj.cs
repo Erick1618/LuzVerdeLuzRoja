@@ -85,7 +85,7 @@ public class Reloj : MonoBehaviour
             textReloj = Minutos.ToString("00") + ":" + Seg.ToString("00");
            
             TextCont.text = textReloj;
-            print(Seg);
+            //print(Seg);
         }
     }
 
