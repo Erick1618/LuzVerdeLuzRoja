@@ -2646,7 +2646,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5932d6ecd6ff07f4c952cae1d2b9ea5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  velocidadMov: 10
+  velocidadMov: 20
   velocidadRot: 200
   x: 0
   y: 0
