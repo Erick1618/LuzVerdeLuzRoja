@@ -1,2 +1,2 @@
 # LuzVerdeLuzRoja
- Juego de la serie: juego del calamr
+ Juego de la serie: juego del calamar
