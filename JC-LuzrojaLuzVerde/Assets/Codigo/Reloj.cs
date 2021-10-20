@@ -10,7 +10,7 @@ public class Reloj : MonoBehaviour
     [Tooltip("Tiempo Inicial en segundos")]
     public int tiempoInicial;
     [Tooltip("Escala del tiempo del reloj")]
-    private float escalaDeTiempo = 1;
+    private float escalaDeTiempo = 5;
 
     public bool start = false;
     private TextMeshPro TextCont;

@@ -23,7 +23,9 @@ public class Doll : MonoBehaviour
     private bool cantando = false;
     private System.Random scanplayer;
 
-    private bool volteada = false;
+    private bool HaciaMi = false;
+    private int minuto = 3;
+    private int i = 0;
 
 
 
@@ -37,7 +39,6 @@ public class Doll : MonoBehaviour
         instrucciones1.Play();
         instrucciones2.PlayDelayed(10);
         doll[1].PlayDelayed(10);
-        
 
     }
 
@@ -48,7 +49,7 @@ public class Doll : MonoBehaviour
         if (!start) 
         {
             muneca_Voltea();
-
+            
 
 
         }
@@ -69,7 +70,7 @@ public class Doll : MonoBehaviour
                 
                 inicio.start = true;
                 start = false;
-
+                luz[minuto].PlayDelayed(1);
             }
             if (instrucciones1.isPlaying)
             {
@@ -85,54 +86,43 @@ public class Doll : MonoBehaviour
     }
     public void muneca_Voltea() 
     {
-        if (!cantando)
+        
+        if(luz[minuto].isPlaying)
         {
-            luz[inicio.Minutos].Play();
-            cantando = true; 
+            rotation_Doll(cabeza, 0);
         }
-        else if (cantando)
+        else
         {
-            if (inicio.Minutos == 4)
+            minuto = inicio.Minutos - 1;
+            if(minuto < 0)
             {
-
-                if (!luz[inicio.Minutos].isPlaying)
-                {
-                    if (!volteada)
-                    {
-                        doll[0].Play();
-                        volteada = true;
-                    }
-                }
+                minuto = 0;
             }
-            if (inicio.Minutos == 3)
+            HaciaMi = true;
+            if (HaciaMi)
             {
-
-                if (!luz[inicio.Minutos].isPlaying)
-                {
-                    if (!volteada)
-                    {
-                        doll[0].Play();
-                        volteada = true;
-                    }
-                   
-                }
-            }
-
-            if (volteada)
-            {
-                rotation_Doll(cabeza, 180);
+                // Haga lo que tenga que hacer
+                doll[0].Play();
+                rotation_Doll(cabeza, 180);                
             }
             else
             {
-                rotation_Doll(cabeza, 0);
+                HaciaMi = false;
+                StartCoroutine("Espera");
             }
-
+            //rotation_Doll(cabeza, 0);
+            luz[minuto].Play();
         }
-        
     }
     public void rotation_Doll(Transform obj, int grados) 
     {
-       // transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(new Vector3(transform.rotation.eulerAngles.x, grados, transform.rotation.eulerAngles.z)), Time.deltaTime * 3);
-       obj.rotation = Quaternion.Slerp(obj.rotation, Quaternion.Euler(new Vector3(obj.rotation.eulerAngles.x, grados, obj.rotation.eulerAngles.z)), Time.deltaTime * 3);
+        obj.rotation = Quaternion.Slerp(obj.rotation, Quaternion.Euler(new Vector3(obj.rotation.eulerAngles.x, grados, obj.rotation.eulerAngles.z)), Time.deltaTime * 3);
+        //print(grados);
+        print(obj.rotation.eulerAngles.x);
+    }
+
+    IEnumerator Espera ()
+    {
+        yield return new WaitForSeconds(5);
     }
 }

@@ -1215,10 +1215,10 @@ MonoBehaviour:
   instrucciones1: {fileID: 1048740210}
   instrucciones2: {fileID: 1048740204}
   luz:
-  - {fileID: 1048740209}
-  - {fileID: 1048740208}
-  - {fileID: 1048740207}
   - {fileID: 1048740211}
+  - {fileID: 1048740207}
+  - {fileID: 1048740208}
+  - {fileID: 1048740209}
   doll:
   - {fileID: 1048740213}
   - {fileID: 1048740212}
