@@ -22,5 +22,8 @@ public class LogicaPersonaje1 : MonoBehaviour
 
         transform.Rotate(0, x * Time.deltaTime * velocidadRot, 0);
         transform.Translate(0, 0, y * Time.deltaTime * velocidadMov);
+
+        anim.SetFloat("VelX", x);
+        anim.SetFloat("VelY", y);
     }
 }
