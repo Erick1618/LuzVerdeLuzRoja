@@ -18,14 +18,14 @@ public class Doll : MonoBehaviour
     public AudioSource instrucciones2;
     public AudioSource[] luz;
     public AudioSource[] doll;
-    float timerCabeza;
+    float timerinicial=0f;
 
     private bool cantando = false;
     private System.Random scanplayer;
 
     private bool volteada = false;
-
-
+    private int valor;
+    private int min;
 
     private bool start = true;
     // Start is called before the first frame update
@@ -33,6 +33,7 @@ public class Doll : MonoBehaviour
     {
         var seed = Environment.TickCount;
         scanplayer = new System.Random(seed);
+        valor = scanplayer.Next(2, 4);
         inicio = FindObjectOfType<Reloj>();
         instrucciones1.Play();
         instrucciones2.PlayDelayed(10);
@@ -48,13 +49,8 @@ public class Doll : MonoBehaviour
         if (!start) 
         {
             muneca_Voltea();
-
-
-
         }
         
-
-
     }
 
     public void inicio_Audio() 
@@ -87,7 +83,12 @@ public class Doll : MonoBehaviour
     {
         if (!cantando)
         {
-            luz[inicio.Minutos].Play();
+            min = inicio.Minutos - 1;
+            if (min<0) 
+            {
+                min = 0;
+            }
+            luz[min].Play();
             cantando = true; 
         }
         else if (cantando)
@@ -95,32 +96,94 @@ public class Doll : MonoBehaviour
             if (inicio.Minutos == 4)
             {
 
-                if (!luz[inicio.Minutos].isPlaying)
+                if (!luz[min].isPlaying)
                 {
                     if (!volteada)
                     {
                         doll[0].Play();
                         volteada = true;
                     }
+                    if (volteada) 
+                    {
+                        tiempo_Scaneo();
+                    }
+                    
                 }
+                
             }
             if (inicio.Minutos == 3)
             {
 
-                if (!luz[inicio.Minutos].isPlaying)
+                if (!luz[min].isPlaying)
                 {
                     if (!volteada)
                     {
                         doll[0].Play();
                         volteada = true;
+                        tiempo_Scaneo();
                     }
-                   
+                    if (volteada)
+                    {
+                        tiempo_Scaneo();
+                    }
+                }
+            }
+            if (inicio.Minutos == 2)
+            {
+
+                if (!luz[min].isPlaying)
+                {
+                    if (!volteada)
+                    {
+                        doll[0].Play();
+                        volteada = true;
+                        tiempo_Scaneo();
+                    }
+                    if (volteada)
+                    {
+                        tiempo_Scaneo();
+                    }
+                }
+            }
+            if (inicio.Minutos == 1)
+            {
+
+                if (!luz[min].isPlaying)
+                {
+                    if (!volteada)
+                    {
+                        doll[0].Play();
+                        volteada = true;
+                        tiempo_Scaneo();
+                    }
+                    if (volteada)
+                    {
+                        tiempo_Scaneo();
+                    }
+                }
+            }
+            if (inicio.Minutos == 0)
+            {
+
+                if (!luz[min].isPlaying)
+                {
+                    if (!volteada)
+                    {
+                        doll[0].Play();
+                        volteada = true;
+                        tiempo_Scaneo();
+                    }
+                    if (volteada)
+                    {
+                        tiempo_Scaneo();
+                    }
                 }
             }
 
             if (volteada)
             {
                 rotation_Doll(cabeza, 180);
+               
             }
             else
             {
@@ -129,6 +192,23 @@ public class Doll : MonoBehaviour
 
         }
         
+    }
+
+    public void tiempo_Scaneo()
+    {
+       timerinicial += Time.deltaTime*1;
+        tiempo = (int)timerinicial % 60;
+        print(tiempo);
+
+        if (tiempo==valor) 
+        {
+
+            timerinicial = 0;
+            volteada = false;
+            doll[1].Play();
+            cantando = false;
+            valor = scanplayer.Next(2, 4);
+        }
     }
     public void rotation_Doll(Transform obj, int grados) 
     {
