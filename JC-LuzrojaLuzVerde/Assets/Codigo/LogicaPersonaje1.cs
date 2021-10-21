@@ -12,20 +12,18 @@ public class LogicaPersonaje1 : MonoBehaviour
     public AudioSource death;
     private Doll muneca;
     private Vector3 posicioninicial;
-    private Quaternion rotinicial;
-    
+    public bool estadendro = false;
+    private Quaternion xsd;
+    public Transform persona;
 
-    public float X { get => x; set => x = value; }
-    public float Y { get => y; set => y = value; }
 
     // Start is called before the first frame update
     void Start()
     {
         anim = GetComponent<Animator>();
         muneca = FindObjectOfType<Doll>();
-        posicioninicial = new Vector3(260.0092f, 33.29712f, -12.35804f);
-        rotinicial = new Quaternion(0,0,0,0);
-       
+        posicioninicial = new Vector3(206.3f, 10.2f, 10.9f);
+        xsd = new Quaternion(0f,0f,0f,0f);
     }
 
     // Update is called once per frame
@@ -39,30 +37,56 @@ public class LogicaPersonaje1 : MonoBehaviour
 
         anim.SetFloat("VelX", x);
         anim.SetFloat("VelY", y);
-    }
-    private void OnTriggerStay(Collider other)
-    {
-        if (other.tag == "AreaMuerte")
+
+        if (estadendro)
         {
-            if (muneca.Volteada)
+            
+            print("hola");
+            movimiento();
+        }
+    }
+    private void OnTriggerEnter(Collider obj)
+    {
+        if (obj.tag == "AM")
+        {
+            estadendro = true;
+              
+        }
+
+    }
+    private void OnTriggerExit(Collider obj)
+    {
+        if (obj.tag == "AM")
+        {
+
+            estadendro = false;
+            
+        }
+
+    }
+   
+    public void movimiento() 
+    {
+        if (muneca.Volteada)
+        {
+            
+            if (x != 0 || y != 0)
             {
-                if (x != 0f || y != 0f)
+                print("te moviste");
+                if (!death.isPlaying)
                 {
-                    if (!death.isPlaying)
-                    { death.Play(); }
-                    transform.SetPositionAndRotation(posicioninicial, rotinicial);
+                    death.Play();
+                  transform.SetPositionAndRotation(posicioninicial,xsd);
                 }
 
             }
-
         }
-
 
     }
     public void personaje_Death()
     {
-
         
+
     }
 
 }

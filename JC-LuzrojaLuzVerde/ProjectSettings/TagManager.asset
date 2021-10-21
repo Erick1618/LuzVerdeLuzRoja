@@ -6,6 +6,7 @@ TagManager:
   tags:
   - AreaMuerte
   - personaje
+  - AM
   layers:
   - Default
   - TransparentFX

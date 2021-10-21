@@ -41,8 +41,8 @@ public class Doll : MonoBehaviour
         instrucciones1.Play();
         instrucciones2.PlayDelayed(10);
         doll[1].PlayDelayed(10);
-       
-        
+
+        area.isTrigger = false;
 
     }
 
@@ -52,7 +52,7 @@ public class Doll : MonoBehaviour
         inicio_Audio();
         if (!start) 
         {
-            area.enabled=false;
+            
             area.isTrigger = true;
             muneca_Voltea();
         }
@@ -93,7 +93,7 @@ public class Doll : MonoBehaviour
             switch (inicio.Minutos) 
             {
                 case 0: luz[0].Play(); min = 0; break;
-                case 1: luz[0].Play(); min = 0; break;
+                case 1: luz[1].Play(); min = 1; break;
                 case 2: luz[1].Play(); min = 1; break;
                 case 3: luz[2].Play(); min = 2; break;
                 case 4: luz[3].Play(); min = 3; break;
@@ -209,7 +209,7 @@ public class Doll : MonoBehaviour
     {
        timerinicial += Time.deltaTime*1;
         tiempo = (int)timerinicial % 60;
-        //print(tiempo);
+       
 
         if (tiempo==4) 
         {
@@ -222,6 +222,8 @@ public class Doll : MonoBehaviour
             
         }
     }
+
+
     public void rotation_Doll(Transform obj, int grados) 
     {
        // transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(new Vector3(transform.rotation.eulerAngles.x, grados, transform.rotation.eulerAngles.z)), Time.deltaTime * 3);
