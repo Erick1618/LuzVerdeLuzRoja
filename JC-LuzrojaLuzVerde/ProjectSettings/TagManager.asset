@@ -3,7 +3,9 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - AreaMuerte
+  - personaje
   layers:
   - Default
   - TransparentFX
@@ -12,9 +14,9 @@ TagManager:
   - Water
   - UI
   - Post Processing
-  - 
-  - 
-  - 
+  - -1
+  - 1
+  - 2
   - 
   - 
   - 
@@ -40,4 +42,10 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: -1
+    uniqueID: 3981195407
+    locked: 0
+  - name: 1
+    uniqueID: 1260718873
     locked: 0
