@@ -22,12 +22,15 @@ public class Doll : MonoBehaviour
 
     private bool cantando = false;
     private System.Random scanplayer;
-
+    public Collider area;
     private bool volteada = false;
     private int valor;
     private int min;
 
     private bool start = true;
+
+    public bool Volteada { get => volteada; set => volteada = value; }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -48,6 +51,8 @@ public class Doll : MonoBehaviour
         inicio_Audio();
         if (!start) 
         {
+            area.enabled=false;
+            area.isTrigger = true;
             muneca_Voltea();
         }
         
