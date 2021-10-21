@@ -11,6 +11,9 @@ public class LogicaPersonaje1 : MonoBehaviour
     private float x;
     public AudioSource death;
     private Doll muneca;
+    private Vector3 posicioninicial;
+    private Quaternion rotinicial;
+    
 
     public float X { get => x; set => x = value; }
     public float Y { get => y; set => y = value; }
@@ -20,6 +23,9 @@ public class LogicaPersonaje1 : MonoBehaviour
     {
         anim = GetComponent<Animator>();
         muneca = FindObjectOfType<Doll>();
+        posicioninicial = new Vector3(260.0092f, 33.29712f, -12.35804f);
+        rotinicial = new Quaternion(0,0,0,0);
+       
     }
 
     // Update is called once per frame
@@ -27,7 +33,7 @@ public class LogicaPersonaje1 : MonoBehaviour
     {
         x = Input.GetAxis("Horizontal");
         y = Input.GetAxis("Vertical");
-
+        
         transform.Rotate(0, x * Time.deltaTime * velocidadRot, 0);
         transform.Translate(0, 0, y * Time.deltaTime * velocidadMov);
 
@@ -40,9 +46,11 @@ public class LogicaPersonaje1 : MonoBehaviour
         {
             if (muneca.Volteada)
             {
-                if (x != 0 || y != 0)
+                if (x != 0f || y != 0f)
                 {
-                    personaje_Death();
+                    if (!death.isPlaying)
+                    { death.Play(); }
+                    transform.SetPositionAndRotation(posicioninicial, rotinicial);
                 }
 
             }
@@ -54,7 +62,7 @@ public class LogicaPersonaje1 : MonoBehaviour
     public void personaje_Death()
     {
 
-        death.Play(1);
+        
     }
 
 }

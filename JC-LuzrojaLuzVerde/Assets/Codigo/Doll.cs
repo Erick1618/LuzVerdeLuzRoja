@@ -41,6 +41,7 @@ public class Doll : MonoBehaviour
         instrucciones1.Play();
         instrucciones2.PlayDelayed(10);
         doll[1].PlayDelayed(10);
+       
         
 
     }
@@ -88,12 +89,17 @@ public class Doll : MonoBehaviour
     {
         if (!cantando)
         {
-            min = inicio.Minutos - 1;
-            if (min<0) 
+           
+            switch (inicio.Minutos) 
             {
-                min = 0;
+                case 0: luz[0].Play(); min = 0; break;
+                case 1: luz[0].Play(); min = 0; break;
+                case 2: luz[1].Play(); min = 1; break;
+                case 3: luz[2].Play(); min = 2; break;
+                case 4: luz[3].Play(); min = 3; break;
+                case 5: luz[3].Play(); min = 3; break;
             }
-            luz[min].Play();
+
             cantando = true; 
         }
         else if (cantando)
@@ -205,14 +211,15 @@ public class Doll : MonoBehaviour
         tiempo = (int)timerinicial % 60;
         //print(tiempo);
 
-        if (tiempo==valor) 
+        if (tiempo==4) 
         {
 
             timerinicial = 0;
             volteada = false;
             doll[1].Play();
             cantando = false;
-            valor = scanplayer.Next(2, 4);
+            
+            
         }
     }
     public void rotation_Doll(Transform obj, int grados) 
