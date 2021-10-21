@@ -10,7 +10,7 @@ public class Reloj : MonoBehaviour
     [Tooltip("Tiempo Inicial en segundos")]
     public int tiempoInicial;
     [Tooltip("Escala del tiempo del reloj")]
-    private float escalaDeTiempo = 1;
+    public float escalaDeTiempo = 1;
 
     public bool start = false;
     private TextMeshPro TextCont;
@@ -85,6 +85,7 @@ public class Reloj : MonoBehaviour
             textReloj = Minutos.ToString("00") + ":" + Seg.ToString("00");
            
             TextCont.text = textReloj;
+            //print(Seg);
         }
     }
 
