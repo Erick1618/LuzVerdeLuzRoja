@@ -30,7 +30,6 @@ public class Reloj : MonoBehaviour
     {
         escalaTiempoInicial = escalaDeTiempo;
         TextCont = GetComponent<TextMeshPro>();
-       
         tiempoSegundos = tiempoInicial;
         actualiza_Reloj(tiempoInicial);
     }

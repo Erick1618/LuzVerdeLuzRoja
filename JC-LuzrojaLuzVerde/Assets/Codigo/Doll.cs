@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using System;
-
+using UnityEngine.SceneManagement;
 
 public class Doll : MonoBehaviour
 {
@@ -16,17 +16,19 @@ public class Doll : MonoBehaviour
     private Reloj inicio;
     public AudioSource instrucciones1;
     public AudioSource instrucciones2;
+    [Tooltip("Disparo")]
+    public AudioSource death;
     public AudioSource[] luz;
     public AudioSource[] doll;
     float timerinicial=0f;
-
+    
     private bool cantando = false;
-    private System.Random scanplayer;
+   
     public Collider area;
     private bool volteada = false;
-    private int valor;
-    private int min;
-
+   
+    public int min;
+    private LogicaPersonaje1 posicion;
     private bool start = true;
 
     public bool Volteada { get => volteada; set => volteada = value; }
@@ -34,10 +36,9 @@ public class Doll : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        var seed = Environment.TickCount;
-        scanplayer = new System.Random(seed);
-        valor = scanplayer.Next(2, 4);
+       
         inicio = FindObjectOfType<Reloj>();
+        posicion = FindObjectOfType<LogicaPersonaje1>();
         instrucciones1.Play();
         instrucciones2.PlayDelayed(10);
         doll[1].PlayDelayed(10);
@@ -99,26 +100,28 @@ public class Doll : MonoBehaviour
                 case 4: luz[3].Play(); min = 3; break;
                 case 5: luz[3].Play(); min = 3; break;
             }
-
             cantando = true; 
+            
         }
         else if (cantando)
         {
             if (inicio.Minutos == 4)
             {
-
                 if (!luz[min].isPlaying)
                 {
+
                     if (!volteada)
                     {
                         doll[0].Play();
                         volteada = true;
+                        tiempo_Scaneo();
+
                     }
-                    if (volteada) 
+                    if (volteada)
                     {
                         tiempo_Scaneo();
                     }
-                    
+
                 }
                 
             }
@@ -207,19 +210,41 @@ public class Doll : MonoBehaviour
 
     public void tiempo_Scaneo()
     {
-       timerinicial += Time.deltaTime*1;
+        timerinicial += Time.deltaTime * 1;
         tiempo = (int)timerinicial % 60;
-       
 
-        if (tiempo==4) 
+
+        if (tiempo == 4)
         {
 
             timerinicial = 0;
             volteada = false;
             doll[1].Play();
             cantando = false;
-            
-            
+
+
+        }
+        verifica_movimiento();
+
+    }
+    public void verifica_movimiento() 
+    {
+        if (posicion.estadendro)
+        {
+            if (posicion.X != 0 || posicion.Y != 0)
+            {
+                
+                if (!death.isPlaying)
+                {
+                    death.Play();
+                   
+                        
+                     SceneManager.LoadScene("Menu2.0");
+                    
+                   
+                }
+
+            }
         }
     }
 

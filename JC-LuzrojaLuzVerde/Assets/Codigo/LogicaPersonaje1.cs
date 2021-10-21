@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class LogicaPersonaje1 : MonoBehaviour
 {
@@ -9,12 +10,15 @@ public class LogicaPersonaje1 : MonoBehaviour
     private Animator anim;
     private float y; // Saber si nuestro personaje se está moviendo
     private float x;
-    public AudioSource death;
+    
     private Doll muneca;
     private Vector3 posicioninicial;
     public bool estadendro = false;
     private Quaternion xsd;
     public Transform persona;
+
+    public float Y { get => y; set => y = value; }
+    public float X { get => x; set => x = value; }
 
 
     // Start is called before the first frame update
@@ -22,8 +26,7 @@ public class LogicaPersonaje1 : MonoBehaviour
     {
         anim = GetComponent<Animator>();
         muneca = FindObjectOfType<Doll>();
-        posicioninicial = new Vector3(206.3f, 10.2f, 10.9f);
-        xsd = new Quaternion(0f,0f,0f,0f);
+       
     }
 
     // Update is called once per frame
@@ -38,19 +41,15 @@ public class LogicaPersonaje1 : MonoBehaviour
         anim.SetFloat("VelX", x);
         anim.SetFloat("VelY", y);
 
-        if (estadendro)
-        {
-            
-            print("hola");
-            movimiento();
-        }
+       
     }
     private void OnTriggerEnter(Collider obj)
     {
         if (obj.tag == "AM")
         {
             estadendro = true;
-              
+           
+
         }
 
     }
@@ -65,28 +64,5 @@ public class LogicaPersonaje1 : MonoBehaviour
 
     }
    
-    public void movimiento() 
-    {
-        if (muneca.Volteada)
-        {
-            
-            if (x != 0 || y != 0)
-            {
-                print("te moviste");
-                if (!death.isPlaying)
-                {
-                    death.Play();
-                  transform.SetPositionAndRotation(posicioninicial,xsd);
-                }
-
-            }
-        }
-
-    }
-    public void personaje_Death()
-    {
-        
-
-    }
-
+  
 }
