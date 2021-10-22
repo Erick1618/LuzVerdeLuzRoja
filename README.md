@@ -1,6 +1,6 @@
 # Juego Luz Verde Luz Roja
 Este es un proyecto de un videojuego desarrollado en [Unity](https://unity.com/es) para la clase de Administración de Proyectos de Software, de la carrera de Ingeniería en Computación, dentro de la Facultad de Ingeniería, Arquitectura y Diseño, de la Universidad Autónoma de Baja California.
-El juego está basado en el juego de "luz verde luz roja" mostrado en la actualmente popoular serie de Netflix "El juego del calamar" - *Squid Game* .
+El juego está basado en el juego de "luz verde luz roja" mostrado en la actualmente popular serie de Netflix "El juego del calamar" (*Squid Game*).
 
 ## Instrucciones
 Para poder instalar el juego es necesario descargar el archivo ejectutable que se encuentra en el repositorio y ejecutarlo.
