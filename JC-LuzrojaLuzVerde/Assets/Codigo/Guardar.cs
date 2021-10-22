@@ -11,12 +11,13 @@ public class Guardar : MonoBehaviour
     public GameObject puntaje;
     public Text textoPuntaje;
     private Reloj segundos;
+    public Text inputNombre;
 
     int valorItems = 100000;
     int valorTiempo = 10000;
 
     void Start() {
-        //pantallaPuntaje.gameObject.SetActive(false);
+        pantallaPuntaje.gameObject.SetActive(false);
         segundos = FindObjectOfType<Reloj>();
     }
 
@@ -41,32 +42,32 @@ public class Guardar : MonoBehaviour
 
                             if (PlayerPrefs.GetInt("PuntajeFinal") > PlayerPrefs.GetInt("Record1")) {
 
-                                PlayerPrefs.SetInt("Record1", PlayerPrefs.GetInt("PuntajeFinal"));
                                 PlayerPrefs.SetInt("Record2", PlayerPrefs.GetInt("Record1"));
                                 PlayerPrefs.SetInt("Record3", PlayerPrefs.GetInt("Record2"));
                                 PlayerPrefs.SetInt("Record4", PlayerPrefs.GetInt("Record3"));
                                 PlayerPrefs.SetInt("Record5", PlayerPrefs.GetInt("Record4"));
+                                PlayerPrefs.SetInt("Record1", PlayerPrefs.GetInt("PuntajeFinal"));
                             }
 
                             else {
-                                PlayerPrefs.SetInt("Record2", PlayerPrefs.GetInt("PuntajeFinal"));
-                                PlayerPrefs.SetInt("Record3", PlayerPrefs.GetInt("Record2"));
-                                PlayerPrefs.SetInt("Record4", PlayerPrefs.GetInt("Record3"));
                                 PlayerPrefs.SetInt("Record5", PlayerPrefs.GetInt("Record4"));
-
+                                PlayerPrefs.SetInt("Record4", PlayerPrefs.GetInt("Record3"));
+                                PlayerPrefs.SetInt("Record3", PlayerPrefs.GetInt("Record2"));
+                                PlayerPrefs.SetInt("Record2", PlayerPrefs.GetInt("PuntajeFinal"));
                             }
                         }
 
                         else {
-                            PlayerPrefs.SetInt("Record3", PlayerPrefs.GetInt("PuntajeFinal"));
-                            PlayerPrefs.SetInt("Record4", PlayerPrefs.GetInt("Record3"));
                             PlayerPrefs.SetInt("Record5", PlayerPrefs.GetInt("Record4"));
+                            PlayerPrefs.SetInt("Record4", PlayerPrefs.GetInt("Record3"));
+                            PlayerPrefs.SetInt("Record3", PlayerPrefs.GetInt("PuntajeFinal"));
+
                         }
                     }
 
                     else {
-                        PlayerPrefs.SetInt("Record4", PlayerPrefs.GetInt("PuntajeFinal"));
                         PlayerPrefs.SetInt("Record5", PlayerPrefs.GetInt("Record4"));
+                        PlayerPrefs.SetInt("Record4", PlayerPrefs.GetInt("PuntajeFinal"));
                     }
                 }
 

@@ -256,6 +256,64 @@ public class Doll : MonoBehaviour
                     // Puntajes
                     textoPuntaje.text = "$ " + PlayerPrefs.GetInt("PuntajeFinal");
 
+                    // Creando record
+                    if (PlayerPrefs.GetInt("PuntajeFinal") > PlayerPrefs.GetInt("Record5"))
+                    {
+
+                        if (PlayerPrefs.GetInt("PuntajeFinal") > PlayerPrefs.GetInt("Record4"))
+                        {
+
+                            if (PlayerPrefs.GetInt("PuntajeFinal") > PlayerPrefs.GetInt("Record3"))
+                            {
+
+                                if (PlayerPrefs.GetInt("PuntajeFinal") > PlayerPrefs.GetInt("Record2"))
+                                {
+
+                                    if (PlayerPrefs.GetInt("PuntajeFinal") > PlayerPrefs.GetInt("Record1"))
+                                    {
+
+                                        PlayerPrefs.SetInt("Record2", PlayerPrefs.GetInt("Record1"));
+                                        PlayerPrefs.SetInt("Record3", PlayerPrefs.GetInt("Record2"));
+                                        PlayerPrefs.SetInt("Record4", PlayerPrefs.GetInt("Record3"));
+                                        PlayerPrefs.SetInt("Record5", PlayerPrefs.GetInt("Record4"));
+                                        PlayerPrefs.SetInt("Record1", PlayerPrefs.GetInt("PuntajeFinal"));
+                                    }
+
+                                    else
+                                    {
+                                        PlayerPrefs.SetInt("Record5", PlayerPrefs.GetInt("Record4"));
+                                        PlayerPrefs.SetInt("Record4", PlayerPrefs.GetInt("Record3"));
+                                        PlayerPrefs.SetInt("Record3", PlayerPrefs.GetInt("Record2"));
+                                        PlayerPrefs.SetInt("Record2", PlayerPrefs.GetInt("PuntajeFinal"));
+                                    }
+                                }
+
+                                else
+                                {
+                                    PlayerPrefs.SetInt("Record5", PlayerPrefs.GetInt("Record4"));
+                                    PlayerPrefs.SetInt("Record4", PlayerPrefs.GetInt("Record3"));
+                                    PlayerPrefs.SetInt("Record3", PlayerPrefs.GetInt("PuntajeFinal"));
+
+                                }
+                            }
+
+                            else
+                            {
+                                PlayerPrefs.SetInt("Record5", PlayerPrefs.GetInt("Record4"));
+                                PlayerPrefs.SetInt("Record4", PlayerPrefs.GetInt("PuntajeFinal"));
+                            }
+                        }
+
+                        else
+                        {
+                            PlayerPrefs.SetInt("Record5", PlayerPrefs.GetInt("PuntajeFinal"));
+                        }
+                    }
+
+                    // Prueba Consola
+                    Debug.Log("Puntaje en items: " + PlayerPrefs.GetInt("PuntajeItems"));
+                    Debug.Log("Puntaje final: " + PlayerPrefs.GetInt("PuntajeFinal"));
+
                     // Guardar todo
                     PlayerPrefs.Save();
 
