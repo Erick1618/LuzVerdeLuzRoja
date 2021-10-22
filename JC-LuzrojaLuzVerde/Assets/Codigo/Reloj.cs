@@ -4,14 +4,15 @@ using UnityEngine;
 using UnityEngine.TestTools;
 using TMPro;
 using System;
+using UnityEngine.UI;
 
 public class Reloj : MonoBehaviour
 {
     [Tooltip("Tiempo Inicial en segundos")]
     public int tiempoInicial;
     [Tooltip("Escala del tiempo del reloj")]
-    private float escalaDeTiempo = 1;
-
+    public float escalaDeTiempo = 1;
+    private Doll doll;
     public bool start = false;
     private TextMeshPro TextCont;
    
@@ -21,18 +22,25 @@ public class Reloj : MonoBehaviour
     private bool pausado = false;
     private int seg;
     private int minutos;
-
+    public bool llego = false;
     public int Seg { get => seg; set => seg = value; }
     public int Minutos { get => minutos; set => minutos = value; }
-
+    // Canvas de muerte
+    public Colision primerTrigger;
+    public GameObject canvasMuerte;
+    public GameObject puntaje;
+    public Text textoPuntaje;
+    int valorItems = 100000;
+    private Pausa cursor;
     // Start is called before the first frame update
     void Start()
     {
         escalaTiempoInicial = escalaDeTiempo;
         TextCont = GetComponent<TextMeshPro>();
-       
+        cursor = FindObjectOfType<Pausa>();
         tiempoSegundos = tiempoInicial;
         actualiza_Reloj(tiempoInicial);
+        doll = FindObjectOfType<Doll>();
     }
 
     // Update is called once per frame
@@ -45,11 +53,11 @@ public class Reloj : MonoBehaviour
             tiempoSegundos -= tiempoFrame;
 
             actualiza_Reloj(tiempoSegundos);
-
-            if (Input.GetKeyDown(KeyCode.Escape))
+            if (!llego) 
             {
-                pausa();
+                time_Out();
             }
+            
         }
     }
 
@@ -85,6 +93,29 @@ public class Reloj : MonoBehaviour
             textReloj = Minutos.ToString("00") + ":" + Seg.ToString("00");
            
             TextCont.text = textReloj;
+            //print(Seg);
+        }
+    }
+    public void time_Out()
+    {
+        if (Minutos == 0 && Seg == 0)
+        {
+            doll.death.Play();
+            
+            doll.pausado = true;
+            // Mostrar canvas muerte, ocultar canvas puntaje 0/10
+            puntaje.SetActive(false);
+            canvasMuerte.gameObject.SetActive(true);
+            cursor.Cursordisable(true);
+            // Almacenar el puntaje es PlayerPrefs
+            PlayerPrefs.SetInt("PuntajeItems", primerTrigger.puntaje * valorItems);
+            PlayerPrefs.SetInt("PuntajeFinal", primerTrigger.puntaje * valorItems);
+
+            // Puntajes
+            textoPuntaje.text = "$ " + PlayerPrefs.GetInt("PuntajeFinal");
+
+            // Guardar todo
+            PlayerPrefs.Save();
         }
     }
 
