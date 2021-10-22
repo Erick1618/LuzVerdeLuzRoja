@@ -60,12 +60,12 @@
     <Compile Include="Assets\Codigo\Puntuaciones.cs" />
     <Compile Include="Assets\Codigo\LogicaBrillo.cs" />
     <Compile Include="Assets\Codigo\MenuPrincipal.cs" />
+    <Compile Include="Assets\Codigo\Resoluciones.cs" />
     <Compile Include="Assets\Codigo\LogicaPersonaje1.cs" />
     <Compile Include="Assets\Codigo\LogicaCalidad.cs" />
     <Compile Include="Assets\Codigo\Guardar.cs" />
     <Compile Include="Assets\Codigo\Doll.cs" />
     <Compile Include="Assets\Codigo\Colision.cs" />
-    <Compile Include="Assets\Codigo\Resoluciones.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
