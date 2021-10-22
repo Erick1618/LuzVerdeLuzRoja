@@ -5,11 +5,10 @@ using UnityEngine;
 using TMPro;
 using System;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class Doll : MonoBehaviour
 {
-   
-    
     public Transform cabeza;
     public Transform cuerpo;
     int tiempo;
@@ -31,6 +30,13 @@ public class Doll : MonoBehaviour
     private LogicaPersonaje1 posicion;
     private bool start = true;
 
+    // Canvas de muerte
+    public Colision primerTrigger;
+    public GameObject canvasMuerte;
+    public GameObject puntaje;
+    public Text textoPuntaje;
+    int valorItems = 100000;
+
     public bool Volteada { get => volteada; set => volteada = value; }
 
     // Start is called before the first frame update
@@ -45,6 +51,8 @@ public class Doll : MonoBehaviour
 
         area.isTrigger = false;
 
+        canvasMuerte.gameObject.SetActive(false);
+
     }
 
     // Update is called once per frame
@@ -53,7 +61,6 @@ public class Doll : MonoBehaviour
         inicio_Audio();
         if (!start) 
         {
-            
             area.isTrigger = true;
             muneca_Voltea();
         }
@@ -237,11 +244,21 @@ public class Doll : MonoBehaviour
                 if (!death.isPlaying)
                 {
                     death.Play();
-                   
-                        
-                     SceneManager.LoadScene("Menu2.0");
-                    
-                   
+
+                    // Mostrar canvas muerte, ocultar canvas puntaje 0/10
+                    puntaje.SetActive(false);
+                    canvasMuerte.gameObject.SetActive(true);
+
+                    // Almacenar el puntaje es PlayerPrefs
+                    PlayerPrefs.SetInt("PuntajeItems", primerTrigger.puntaje * valorItems);
+                    PlayerPrefs.SetInt("PuntajeFinal", primerTrigger.puntaje * valorItems);
+
+                    // Puntajes
+                    textoPuntaje.text = "$ " + PlayerPrefs.GetInt("PuntajeFinal");
+
+                    // Guardar todo
+                    PlayerPrefs.Save();
+
                 }
 
             }

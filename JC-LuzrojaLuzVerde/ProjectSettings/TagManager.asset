@@ -7,6 +7,8 @@ TagManager:
   - AreaMuerte
   - personaje
   - AM
+  - Item
+  - Final
   layers:
   - Default
   - TransparentFX
