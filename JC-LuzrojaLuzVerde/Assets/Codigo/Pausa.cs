@@ -69,12 +69,13 @@ public class Pausa : MonoBehaviour
 
         if (!cursor) {
             Cursor_visible(cursor);
+            
         }
         
     }
     private void Cursor_visible(bool xd) 
     {
-        Cursor.visible = xd;
+        
     }
     public void Cursordisable(bool xd)
     {
@@ -258,5 +259,15 @@ public class Pausa : MonoBehaviour
     {
         SceneManager.LoadScene("Menu2.0");
         Time.timeScale = 1;
+    }
+    public void time_cero()
+    {
+        
+        Time.timeScale = 1;
+    }
+    public void time_one()
+    {
+
+        Time.timeScale = 0;
     }
 }
