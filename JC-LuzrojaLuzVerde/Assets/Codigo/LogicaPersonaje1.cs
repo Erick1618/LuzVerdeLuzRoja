@@ -43,12 +43,48 @@ public class LogicaPersonaje1 : MonoBehaviour
         anim.SetFloat("VelX", x);
         anim.SetFloat("VelY", y);
 
-        if(puedoSaltar)
+        if (puedoSaltar)
         {
-            if(Input.GetKeyDown(KeyCode.Space))
+            if (Input.GetKeyDown(KeyCode.Space))
             {
-                anim.SetBool("brinque", true);
-                rb.AddForce(new Vector3(0, fuerzaDeSalto, 0), ForceMode.Impulse);
+                if (anim.GetBool("tocoSuelo"))
+                {
+                    anim.SetBool("brinque", true);
+                    rb.AddForce(new Vector3(0, fuerzaDeSalto, 0), ForceMode.Impulse);
+                }
+            }
+            else
+            {
+                if (Input.GetKey(KeyCode.LeftShift))
+                {
+                    // Estoy en el piso
+                    if (anim.GetBool("tocoSuelo"))
+                    {
+                        velocidadMov = velocidadCorrer;
+                        if (y > 0)
+                        {
+                            // Entonces estamos avanzando
+                            anim.SetBool("corriendo", true);
+                        }
+                        else
+                        {
+                            anim.SetBool("corriendo", false);
+                        }
+                    }
+                    else
+                    {
+                        anim.SetBool("corriendo", false);
+                        if (puedoSaltar)
+                        {
+                            velocidadMov = velocidadInicial;
+                        }
+                    }
+                }
+                else
+                {
+                    anim.SetBool("corriendo", false);
+                    velocidadMov = velocidadInicial;
+                }
             }
             anim.SetBool("tocoSuelo", true);
         }
@@ -58,38 +94,6 @@ public class LogicaPersonaje1 : MonoBehaviour
             anim.SetBool("tocoSuelo", false);
         }
 
-        if(Input.GetKey(KeyCode.LeftShift))
-        {
-            if(puedoSaltar) // Estoy en el piso
-            {
-                velocidadMov = velocidadCorrer;
-                if(y > 0)
-                {
-                    // Entonces estamos avanzando
-                    anim.SetBool("corriendo", true);
-                }
-                else
-                {
-                    anim.SetBool("corriendo", false);
-                }
-            }
-            else
-            {
-                anim.SetBool("corriendo", false);
-                if (puedoSaltar)
-                {
-                    velocidadMov = velocidadInicial;
-                }
-            }
-        }
-        else
-        {
-            anim.SetBool("corriendo", false);
-            if(puedoSaltar)
-            {
-                velocidadMov = velocidadInicial;
-            }
-        }
     }
 
     public void EstoyCayendo()
@@ -102,7 +106,10 @@ public class LogicaPersonaje1 : MonoBehaviour
         if (obj.tag == "AM")
         {
             estadendro = true;
-
+        }
+        if (obj.tag == "Muro")
+        {
+            puedoSaltar = false;
         }
 
     }

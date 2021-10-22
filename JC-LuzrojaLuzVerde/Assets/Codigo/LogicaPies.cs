@@ -17,13 +17,33 @@ public class LogicaPies : MonoBehaviour
         
     }
 
-    private void OnTriggerStay(Collider other)
+    private void OnTriggerStay(Collider obj)
     {
-        logicaP1.puedoSaltar = true;
+        if (obj.tag == "Muro")
+        {
+            logicaP1.puedoSaltar = false;
+        }
+        else
+        {
+            if(obj.tag == "AM")
+            {
+                logicaP1.puedoSaltar = false;
+            }
+            logicaP1.puedoSaltar = true;
+        }
+
     }
 
-    private void OnTriggerExit(Collider other)
+    private void OnTriggerExit(Collider obj)
     {
         logicaP1.puedoSaltar = false;
+    }
+
+    private void OnTriggerEnter(Collider obj)
+    {
+        if (obj.tag == "Terreno")
+        {
+            logicaP1.puedoSaltar = true;
+        }
     }
 }
