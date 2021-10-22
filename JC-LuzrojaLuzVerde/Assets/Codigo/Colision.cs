@@ -5,7 +5,7 @@ public class Colision : MonoBehaviour {
     public Text scoreText;
     public AudioSource beep;
 
-    int puntaje = 0;
+    public int puntaje = 0;
 
     void Start() {
         scoreText.text = puntaje + " / 10";

@@ -16,7 +16,7 @@ public class Reloj : MonoBehaviour
     private TextMeshPro TextCont;
    
     private float tiempoFrame = 0f;
-    private float tiempoSegundos = 0f;
+    private float tiempoSegundos;
     private float tiempoALpausar, escalaTiempoInicial;
     private bool pausado = false;
     private int seg;
@@ -24,10 +24,12 @@ public class Reloj : MonoBehaviour
 
     public int Seg { get => seg; set => seg = value; }
     public int Minutos { get => minutos; set => minutos = value; }
+    public float TiempoSegundos { get => tiempoSegundos; set => tiempoSegundos = value; }
 
     // Start is called before the first frame update
     void Start()
     {
+        tiempoSegundos = 0f;
         escalaTiempoInicial = escalaDeTiempo;
         TextCont = GetComponent<TextMeshPro>();
        
@@ -87,6 +89,10 @@ public class Reloj : MonoBehaviour
             TextCont.text = textReloj;
             //print(Seg);
         }
+    }
+
+    public void detener_Reloj(float tiempo) { 
+        
     }
 
 
