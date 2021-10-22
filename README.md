@@ -13,11 +13,11 @@ Además de esto, en el escenario se encuentran 10 monedas las cuales proporciona
 
 ## Imágenes del juego
 
-![1er SS](menu_inicio.png)
-![2do SS](opciones.png)
-![3er SS](jugando.png)
-![4to SS](pausa.png)
-![5to SS](jugando_opciones.png)
-![6to SS](ganaste.png)
-![7mo SS](perdiste.png)
-![8vo SS](puntuaciones.png)
+![1er SS](img_juego/menu_inicio.png)
+![2do SS](img_juego/opciones.png)
+![3er SS](img_juego/jugando.png)
+![4to SS](img_juego/pausa.png)
+![5to SS](img_juego/jugando_opciones.png)
+![6to SS](img_juego/ganaste.png)
+![7mo SS](img_juego/perdiste.png)
+![8vo SS](img_juego/puntuaciones.png)
