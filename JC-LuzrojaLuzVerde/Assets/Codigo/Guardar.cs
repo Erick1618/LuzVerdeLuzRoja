@@ -8,6 +8,7 @@ public class Guardar : MonoBehaviour
 {
     public Colision primerTrigger;
     public GameObject pantallaPuntaje;
+    public GameObject puntaje;
     public Text textoPuntaje;
     public Text textoRecord;
     private Reloj segundos;
@@ -24,6 +25,9 @@ public class Guardar : MonoBehaviour
 
     private void OnTriggerEnter(Collider obj) {
         if (obj.tag == "Final") {
+            // Borrar contador de puntos
+            puntaje.SetActive(false);
+
             // Guardado de puntajes en PlayerPrefs
             PlayerPrefs.SetInt("PuntajeItems", primerTrigger.puntaje * valorItems);
             PlayerPrefs.SetInt("PuntajeTiempo", ((segundos.Minutos * 60) + (segundos.Seg)) * valorTiempo);
@@ -45,6 +49,9 @@ public class Guardar : MonoBehaviour
             // Puntajes
             textoPuntaje.text = "$ " + PlayerPrefs.GetInt("PuntajeFinal");
             textoRecord.text = "$ " + PlayerPrefs.GetInt("Record");
+
+            // Guardar todo
+            PlayerPrefs.Save();
         }
     }
 }

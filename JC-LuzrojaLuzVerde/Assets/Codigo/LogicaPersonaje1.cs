@@ -49,6 +49,11 @@ public class LogicaPersonaje1 : MonoBehaviour
 
         }
 
+        if (other.tag == "Final") {
+            velocidadMov = 0;
+            velocidadRot = 0;
+        }
+
 
     }
     public void personaje_Death()
