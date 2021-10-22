@@ -17,7 +17,7 @@ public class LogicaPersonaje1 : MonoBehaviour
     public float fuerzaDeSalto = 12f;
     public bool puedoSaltar;
     public bool estadendro = false;
-
+    public bool pausado = false;
     public float Y { get => y; set => y = value; }
     public float X { get => x; set => x = value; }
 

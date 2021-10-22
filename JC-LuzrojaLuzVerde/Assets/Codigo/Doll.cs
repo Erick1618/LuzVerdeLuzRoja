@@ -29,6 +29,8 @@ public class Doll : MonoBehaviour
     public int min;
     private LogicaPersonaje1 posicion;
     private bool start = true;
+    public bool pausado = false;
+    public bool pausadoaudio = false;
 
     // Canvas de muerte
     public Colision primerTrigger;
@@ -61,8 +63,17 @@ public class Doll : MonoBehaviour
         inicio_Audio();
         if (!start) 
         {
-            area.isTrigger = true;
-            muneca_Voltea();
+            if (!pausado)
+            {
+
+                area.isTrigger = true;
+                muneca_Voltea();
+            }
+            else
+            {
+                luz[min].Stop();
+
+            }
         }
         
     }

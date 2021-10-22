@@ -11,7 +11,7 @@ public class Reloj : MonoBehaviour
     public int tiempoInicial;
     [Tooltip("Escala del tiempo del reloj")]
     public float escalaDeTiempo = 1;
-
+    private Doll doll;
     public bool start = false;
     private TextMeshPro TextCont;
    
@@ -32,6 +32,7 @@ public class Reloj : MonoBehaviour
         TextCont = GetComponent<TextMeshPro>();
         tiempoSegundos = tiempoInicial;
         actualiza_Reloj(tiempoInicial);
+        doll = FindObjectOfType<Doll>();
     }
 
     // Update is called once per frame
@@ -45,10 +46,7 @@ public class Reloj : MonoBehaviour
 
             actualiza_Reloj(tiempoSegundos);
 
-            if (Input.GetKeyDown(KeyCode.Escape))
-            {
-                pausa();
-            }
+            time_Out();
         }
     }
 
@@ -85,6 +83,13 @@ public class Reloj : MonoBehaviour
            
             TextCont.text = textReloj;
             //print(Seg);
+        }
+    }
+    public void time_Out()
+    {
+        if (Minutos == 0 && Seg == 0)
+        {
+            doll.death.Play();
         }
     }
 

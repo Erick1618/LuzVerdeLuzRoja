@@ -9,7 +9,7 @@ public class MenuPrincipal : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        audioF.Play(1);
+        audioF.Play();
     }
 
     // Update is called once per frame
