@@ -101,7 +101,7 @@ public class Reloj : MonoBehaviour
         if (Minutos == 0 && Seg == 0)
         {
             doll.death.Play();
-            Time.timeScale = 0;
+            
             doll.pausado = true;
             // Mostrar canvas muerte, ocultar canvas puntaje 0/10
             puntaje.SetActive(false);

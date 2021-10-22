@@ -141,6 +141,8 @@ public class Pausa : MonoBehaviour
         resoluciones = Screen.resolutions;
         resolucionDP.ClearOptions();
         List<string> opcionesR = new List<string>();
+        List<string> res = new List<string>();
+
         int resActual = 0;
 
         for (int i = 0; i<resoluciones.Length;i++) 
@@ -153,7 +155,14 @@ public class Pausa : MonoBehaviour
                 resActual = i;
             }
             
+
+           
         }
+      
+        //res.Add(opcionesR[opcionesR.Count - 4]);
+        //res.Add(opcionesR[opcionesR.Count - 2]);
+        //res.Add(opcionesR[opcionesR.Count-1]);
+
         resolucionDP.AddOptions(opcionesR);
         resolucionDP.value = resActual;
         resolucionDP.RefreshShownValue();

@@ -57,7 +57,7 @@ public class Doll : MonoBehaviour
 
         area.isTrigger = false;
 
-        canvasMuerte.gameObject.SetActive(false);
+        //canvasMuerte.gameObject.SetActive(false);
 
     }
 
