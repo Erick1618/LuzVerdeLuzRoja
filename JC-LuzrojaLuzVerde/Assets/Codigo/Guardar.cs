@@ -16,7 +16,7 @@ public class Guardar : MonoBehaviour
     int valorTiempo = 10000;
 
     void Start() {
-        pantallaPuntaje.gameObject.SetActive(false);
+        //pantallaPuntaje.gameObject.SetActive(false);
         segundos = FindObjectOfType<Reloj>();
     }
 
