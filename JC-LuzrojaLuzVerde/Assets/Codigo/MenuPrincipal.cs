@@ -5,11 +5,11 @@ using UnityEngine.SceneManagement;
 
 public class MenuPrincipal : MonoBehaviour
 {
+    public AudioSource audioF;
     // Start is called before the first frame update
-    
     void Start()
     {
-        
+        audioF.Play(1);
     }
 
     // Update is called once per frame
