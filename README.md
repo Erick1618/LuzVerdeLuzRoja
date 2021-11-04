@@ -4,9 +4,13 @@ El juego está basado en el juego de "luz verde luz roja" mostrado en la actualm
 
 ## Integrantes del Equipo
 -Olachea Ortega Erick Augusto
+
 -Joel Ernesto Lopez Verdugo
+
 -Jonathan Aviña Aviña 
+
 -Erick Gabriel Santiago Suenaga 
+
 
 ## Instrucciones
 Para poder instalar el juego es necesario descargar el archivo ejectutable que se encuentra en el repositorio y ejecutarlo.
